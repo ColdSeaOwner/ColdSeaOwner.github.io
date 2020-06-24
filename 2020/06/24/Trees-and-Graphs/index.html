@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"mist","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Type of TreesTrees vs. Binary TreesBinary Tree vs. Binary Search TreeA binary search tree is a binary tree in which every node fits a specific ordering property: all left descendents &lt;&#x3D; n &lt; all">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trees and Graphs">
+<meta property="og:url" content="http://yoursite.com/2020/06/24/Trees-and-Graphs/index.html">
+<meta property="og:site_name" content="ColdSea">
+<meta property="og:description" content="Type of TreesTrees vs. Binary TreesBinary Tree vs. Binary Search TreeA binary search tree is a binary tree in which every node fits a specific ordering property: all left descendents &lt;&#x3D; n &lt; all">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-24T22:10:27.000Z">
+<meta property="article:modified_time" content="2020-06-24T22:14:50.496Z">
+<meta property="article:author" content="ColdSeaOwner">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/24/Trees-and-Graphs/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Trees and Graphs | ColdSea</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before, .use-motion .logo-line-after {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line-before"></i>
+      <h1 class="site-title">ColdSea</h1>
+      <i class="logo-line-after"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-of-Trees"><span class="nav-number">1.</span> <span class="nav-text">Type of Trees</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trees-vs-Binary-Trees"><span class="nav-number">1.1.</span> <span class="nav-text">Trees vs. Binary Trees</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Tree-vs-Binary-Search-Tree"><span class="nav-number">1.2.</span> <span class="nav-text">Binary Tree vs. Binary Search Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Balanced-vs-Unbalanced"><span class="nav-number">1.3.</span> <span class="nav-text">Balanced vs. Unbalanced</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Complete-Binary-Trees"><span class="nav-number">1.4.</span> <span class="nav-text">Complete Binary Trees</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Full-Binary-Trees"><span class="nav-number">1.5.</span> <span class="nav-text">Full Binary Trees</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Perfect-Binary-Trees"><span class="nav-number">1.6.</span> <span class="nav-text">Perfect Binary Trees</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary-Tree-Traversal"><span class="nav-number">2.</span> <span class="nav-text">Binary Tree Traversal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary-Heaps-Min-Heaps-and-Max-Heaps"><span class="nav-number">3.</span> <span class="nav-text">Binary Heaps (Min-Heaps and Max-Heaps)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">3.0.1.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Extract-Minimum-Element"><span class="nav-number">3.0.2.</span> <span class="nav-text">Extract Minimum Element</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tries-Prefix-Trees"><span class="nav-number">4.</span> <span class="nav-text">Tries (Prefix Trees)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphs"><span class="nav-number">5.</span> <span class="nav-text">Graphs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ColdSeaOwner</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/24/Trees-and-Graphs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ColdSeaOwner">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ColdSea">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Trees and Graphs
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-24 15:10:27 / Modified: 15:14:50" itemprop="dateCreated datePublished" datetime="2020-06-24T15:10:27-07:00">2020-06-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Type-of-Trees"><a href="#Type-of-Trees" class="headerlink" title="Type of Trees"></a>Type of Trees</h2><h3 id="Trees-vs-Binary-Trees"><a href="#Trees-vs-Binary-Trees" class="headerlink" title="Trees vs. Binary Trees"></a>Trees vs. Binary Trees</h3><h3 id="Binary-Tree-vs-Binary-Search-Tree"><a href="#Binary-Tree-vs-Binary-Search-Tree" class="headerlink" title="Binary Tree vs. Binary Search Tree"></a>Binary Tree vs. Binary Search Tree</h3><p>A binary search tree is a binary tree in which every node fits a specific ordering property: <code>all left descendents &lt;= n &lt; all right descendents</code>. And it cannot have duplicate values.</p>
+<h3 id="Balanced-vs-Unbalanced"><a href="#Balanced-vs-Unbalanced" class="headerlink" title="Balanced vs. Unbalanced"></a>Balanced vs. Unbalanced</h3><p>Balanced tree really means something more like “not terribly imbalanced”. It is balanced enough to ensure O(logn) times for insert and find, but it is not necessarily as balanced as it could be.</p>
+<h3 id="Complete-Binary-Trees"><a href="#Complete-Binary-Trees" class="headerlink" title="Complete Binary Trees"></a>Complete Binary Trees</h3><p>Filled from left to right</p>
+<h3 id="Full-Binary-Trees"><a href="#Full-Binary-Trees" class="headerlink" title="Full Binary Trees"></a>Full Binary Trees</h3><p>Every node has either zero or two children. That is, no nodes have only one child.</p>
+<h3 id="Perfect-Binary-Trees"><a href="#Perfect-Binary-Trees" class="headerlink" title="Perfect Binary Trees"></a>Perfect Binary Trees</h3><p>Both full and complete</p>
+<h2 id="Binary-Tree-Traversal"><a href="#Binary-Tree-Traversal" class="headerlink" title="Binary Tree Traversal"></a>Binary Tree Traversal</h2><ul>
+<li>In-Order traversal<ul>
+<li>left</li>
+<li>cur</li>
+<li>right</li>
+</ul>
+</li>
+<li>Pre-Order traversal<ul>
+<li>cur</li>
+<li>left</li>
+<li>right</li>
+</ul>
+</li>
+<li>Post-Order traversal<ul>
+<li>left</li>
+<li>right</li>
+<li>cur</li>
+</ul>
+</li>
+</ul>
+<h2 id="Binary-Heaps-Min-Heaps-and-Max-Heaps"><a href="#Binary-Heaps-Min-Heaps-and-Max-Heaps" class="headerlink" title="Binary Heaps (Min-Heaps and Max-Heaps)"></a>Binary Heaps (Min-Heaps and Max-Heaps)</h2><p>A min heap is a complete binary tree, where each node is smaller than its children. The root is the min element in the tree.</p>
+<h4 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h4><p>When we insert a min-heap, we start by inserting the element at the bottom. Then we “fix” the tree by swapping the new element with its parent until we find an appropriate spot for the element.</p>
+<p>It takes <code>O(logn)</code> time, where n is the number of nodes in the heap</p>
+<h4 id="Extract-Minimum-Element"><a href="#Extract-Minimum-Element" class="headerlink" title="Extract Minimum Element"></a>Extract Minimum Element</h4><p>Replace the top element to be the most bottom element. keep swapping it with smaller child.</p>
+<h2 id="Tries-Prefix-Trees"><a href="#Tries-Prefix-Trees" class="headerlink" title="Tries (Prefix Trees)"></a>Tries (Prefix Trees)</h2><p>A trie is a variant of an n-ary tree in which characters are stored at each node. Each path down the tree may represent a word</p>
+<p>A trie can check if a string is valid prefix in <code>O(K)</code> where K is the length of the string. Hash table also take <code>O(K)</code></p>
+<h2 id="Graphs"><a href="#Graphs" class="headerlink" title="Graphs"></a>Graphs</h2><p>A tree is actually a type of graph, but not all graphs are trees. A tree is a connected graph without cycles.</p>
+<p>A graph is imply a collection of nodes with edges between (some of) them.</p>
+<p>two ways to present a graph:</p>
+<ul>
+<li>Adjacency List</li>
+<li>Adjacency Matrices</li>
+</ul>
+<p>Graph Search</p>
+<ul>
+<li>DFS: use a stack</li>
+<li>BFS: use a queue</li>
+<li>Bidirectional Search<ul>
+<li>is used to find the shortest path between a source and destination node. It operates by essentially running two simultaneous BFS, one form each node. When their searches collide, we have found a path.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Cracking the Coding Interview by GAYLE LAAKMANN MCDOWELL</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/23/How-to-start-new-Blog-with-Hexo/" rel="prev" title="How to start new Blog with Hexo">
+      <i class="fa fa-chevron-left"></i> How to start new Blog with Hexo
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/24/Strings-and-Arrays/" rel="next" title="Strings and Arrays">
+      Strings and Arrays <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ColdSeaOwner</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

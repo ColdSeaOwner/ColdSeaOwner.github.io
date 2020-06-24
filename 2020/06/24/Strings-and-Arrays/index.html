@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"mist","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Direct concatenation made a new copy of the string, thus concatenation of an array of words makes O(xn^2) String Builder creates a resizable array of all the strings, copying them back to a string">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Strings and Arrays">
+<meta property="og:url" content="http://yoursite.com/2020/06/24/Strings-and-Arrays/index.html">
+<meta property="og:site_name" content="ColdSea">
+<meta property="og:description" content="Direct concatenation made a new copy of the string, thus concatenation of an array of words makes O(xn^2) String Builder creates a resizable array of all the strings, copying them back to a string">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.asciitable.xyz/images/ascii-table.png">
+<meta property="og:image" content="https://hi-static.z-dn.net/files/de4/628e6d48b76004a4afb95ae28aa2328e.png">
+<meta property="article:published_time" content="2020-06-24T22:16:21.000Z">
+<meta property="article:modified_time" content="2020-06-24T22:21:30.082Z">
+<meta property="article:author" content="ColdSeaOwner">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.asciitable.xyz/images/ascii-table.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/24/Strings-and-Arrays/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Strings and Arrays | ColdSea</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before, .use-motion .logo-line-after {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line-before"></i>
+      <h1 class="site-title">ColdSea</h1>
+      <i class="logo-line-after"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-Array、List、Set互相转化"><span class="nav-number">1.</span> <span class="nav-text">Java Array、List、Set互相转化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Array转List"><span class="nav-number">1.1.</span> <span class="nav-text">Array转List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List转Array"><span class="nav-number">1.2.</span> <span class="nav-text">List转Array</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List转Set"><span class="nav-number">1.3.</span> <span class="nav-text">List转Set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set转List"><span class="nav-number">1.4.</span> <span class="nav-text">Set转List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#array转set"><span class="nav-number">1.5.</span> <span class="nav-text">array转set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set转array"><span class="nav-number">1.6.</span> <span class="nav-text">set转array</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#283-Move-Zeroes"><span class="nav-number">2.</span> <span class="nav-text">283.Move Zeroes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-Merge-Sorted-Array"><span class="nav-number">3.</span> <span class="nav-text">28.Merge Sorted Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#152-Maximum-Product-Subarray"><span class="nav-number">4.</span> <span class="nav-text">152.Maximum Product Subarray</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-Next-Permutation"><span class="nav-number">5.</span> <span class="nav-text">31.Next Permutation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#38-Count-and-Say"><span class="nav-number">6.</span> <span class="nav-text">38. Count and Say</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#937-Reorder-Log-Files"><span class="nav-number">7.</span> <span class="nav-text">937. Reorder Log Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#560-Subarray-Sum-Equals-K"><span class="nav-number">8.</span> <span class="nav-text">560. Subarray Sum Equals K</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number"></span> <span class="nav-text">Reference</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ColdSeaOwner</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/24/Strings-and-Arrays/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ColdSeaOwner">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ColdSea">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Strings and Arrays
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-24 15:16:21 / Modified: 15:21:30" itemprop="dateCreated datePublished" datetime="2020-06-24T15:16:21-07:00">2020-06-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        
+
+<p><img src="https://www.asciitable.xyz/images/ascii-table.png" alt="ASCII Table"></p>
+<p><img src="https://hi-static.z-dn.net/files/de4/628e6d48b76004a4afb95ae28aa2328e.png" alt="runtime of different sorting algorithms"></p>
+<p>Direct concatenation made a new copy of the string, thus concatenation of an array of words makes <code>O(xn^2)</code></p>
+<p>String Builder creates a resizable array of all the strings, copying them back to a string only when necessary:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">joinWord</span><span class="params">(String[] words)</span> </span>&#123;</span><br><span class="line">	StringBuilder sentence = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">	<span class="keyword">for</span> (String w: words) &#123;</span><br><span class="line">		<span class="comment">// append an array of words</span></span><br><span class="line">		sentence.append(w);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// return a string</span></span><br><span class="line">	<span class="keyword">return</span> sentence.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We could also use method: <code>sentence.reverse()</code></p>
+<p>runtime reduces to <code>O(n)</code></p>
+<h3 id="Java-Array、List、Set互相转化"><a href="#Java-Array、List、Set互相转化" class="headerlink" title="Java Array、List、Set互相转化"></a>Java Array、List、Set互相转化</h3><h4 id="Array转List"><a href="#Array转List" class="headerlink" title="Array转List"></a>Array转List</h4><p>String[] s = new String[]{“A”, “B”, “C”, “D”,”E”};</p>
+<p>List<String> list = Arrays.asList(s);</p>
+<p>注意这里list里面的元素直接是s里面的元素( list backed by the specified array)，换句话就是说：对s的修改，直接影响list。</p>
+<h4 id="List转Array"><a href="#List转Array" class="headerlink" title="List转Array"></a>List转Array</h4><p>String[] dest = list.toArray(new String[0]);</p>
+<p>String[0]是指定返回数组的类型<br>注意这里的dest里面的元素不是list里面的元素，换句话就是说：对list中关于元素的修改，不会影响dest。</p>
+<h4 id="List转Set"><a href="#List转Set" class="headerlink" title="List转Set"></a>List转Set</h4><p>Set<String> set = new HashSet&lt;&gt;(list);</p>
+<h4 id="Set转List"><a href="#Set转List" class="headerlink" title="Set转List"></a>Set转List</h4><p>List<String> list_1 = new ArrayList&lt;&gt;(set);</p>
+<p>和toArray()一样，被转换的List(Set)的修改不会对被转化后的Set（List）造成影响。</p>
+<h4 id="array转set"><a href="#array转set" class="headerlink" title="array转set"></a>array转set</h4><p>s = new String[]{“A”, “B”, “C”, “D”,”E”};</p>
+<p>set = new HashSet&lt;&gt;(Arrays.asList(s));</p>
+<h4 id="set转array"><a href="#set转array" class="headerlink" title="set转array"></a>set转array</h4><p>dest = set.toArray(new String[0]);</p>
+<h3 id="283-Move-Zeroes"><a href="#283-Move-Zeroes" class="headerlink" title="283.Move Zeroes"></a>283.Move Zeroes</h3><p>Given an array nums, write a function to move all 0’s to the end of it while maintaining the relative order of the non-zero elements.</p>
+<p>Example:</p>
+<p>Input: [0,1,0,3,12]<br>Output: [1,3,12,0,0]<br>Note:</p>
+<p>You must do this in-place without making a copy of the array.</p>
+<p>Minimize the total number of operations.</p>
+<p>ms:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; nums.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[j] != <span class="number">0</span>) &#123;</span><br><span class="line">                    nums[i] = nums[j];</span><br><span class="line">                    nums[j] = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>s:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span>;        </span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> insertPos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num: nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num != <span class="number">0</span>) nums[insertPos++] = num;</span><br><span class="line">    &#125;        </span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (insertPos &lt; nums.length) &#123;</span><br><span class="line">        nums[insertPos++] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="28-Merge-Sorted-Array"><a href="#28-Merge-Sorted-Array" class="headerlink" title="28.Merge Sorted Array"></a>28.Merge Sorted Array</h3><p>Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.</p>
+<p>Note:</p>
+<p>The number of elements initialized in nums1 and nums2 are m and n respectively.<br>You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2.<br>Example:</p>
+<p>Input:<br>nums1 = [1,2,3,0,0,0], m = 3<br>nums2 = [2,5,6],       n = 3</p>
+<p>Output: [1,2,2,3,5,6]</p>
+<p>s: start from the back, since the back is empty</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> m, <span class="keyword">int</span> B[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=m-<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> j=n-<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> k = m+n-<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(i &gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(A[i] &gt; B[j])</span><br><span class="line">				A[k--] = A[i--];</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				A[k--] = B[j--];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(j&gt;=<span class="number">0</span>)</span><br><span class="line">			A[k--] = B[j--];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="152-Maximum-Product-Subarray"><a href="#152-Maximum-Product-Subarray" class="headerlink" title="152.Maximum Product Subarray"></a>152.Maximum Product Subarray</h3><p>Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which has the largest product.</p>
+<p>Example 1:</p>
+<p>Input: [2,3,-2,4]<br>Output: 6<br>Explanation: [2,3] has the largest product 6.<br>Example 2:</p>
+<p>Input: [-2,0,-1]<br>Output: 0<br>Explanation: The result cannot be 2, because [-2,-1] is not a subarray.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// store the result that is the max we have found so far</span></span><br><span class="line">    <span class="keyword">int</span> r = A[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// imax/imin stores the max/min product of</span></span><br><span class="line">    <span class="comment">// subarray that ends with the current number A[i]</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, imax = r, imin = r; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">// multiplied by a negative makes big number smaller, small number bigger</span></span><br><span class="line">        <span class="comment">// so we redefine the extremums by swapping them</span></span><br><span class="line">        <span class="keyword">if</span> (A[i] &lt; <span class="number">0</span>)</span><br><span class="line">            swap(imax, imin);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// max/min product for the current number is either the current number itself</span></span><br><span class="line">        <span class="comment">// or the max/min by the previous number times the current one</span></span><br><span class="line">        imax = max(A[i], imax * A[i]);</span><br><span class="line">        imin = min(A[i], imin * A[i]);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// the newly computed max value is a candidate for our global result</span></span><br><span class="line">        r = max(r, imax);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="31-Next-Permutation"><a href="#31-Next-Permutation" class="headerlink" title="31.Next Permutation"></a>31.Next Permutation</h3><p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.</p>
+<p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).</p>
+<p>The replacement must be in-place and use only constant extra memory.</p>
+<p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.</p>
+<p>1,2,3 → 1,3,2<br>3,2,1 → 1,2,3<br>1,1,5 → 1,5,1</p>
+<p>s: find two change spots and reverse the array to solve the problem. Be careful with edge case when it the max of the all permutations.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nextPermutation</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span> i = n-<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; nums[i+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            reverse(nums, <span class="number">0</span>, n-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> j = n-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (j &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; nums[j]) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">        nums[i] = nums[j];</span><br><span class="line">        nums[j] = temp;</span><br><span class="line">        reverse(nums, i+<span class="number">1</span>, n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (start &lt; end) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = nums[start];</span><br><span class="line">            nums[start] = nums[end];</span><br><span class="line">            nums[end] = temp;</span><br><span class="line">            start++;</span><br><span class="line">            end--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="38-Count-and-Say"><a href="#38-Count-and-Say" class="headerlink" title="38. Count and Say"></a>38. Count and Say</h3><p>The count-and-say sequence is the sequence of integers with the first five terms as following:</p>
+<ol>
+<li>1</li>
+<li>11</li>
+<li>21</li>
+<li>1211</li>
+<li>111221<br>1 is read off as “one 1” or 11.<br>11 is read off as “two 1s” or 21.<br>21 is read off as “one 2, then one 1” or 1211.</li>
+</ol>
+<p>Given an integer n where 1 ≤ n ≤ 30, generate the nth term of the count-and-say sequence.</p>
+<p>Note: Each term of the sequence of integers will be represented as a string.</p>
+<p>Example 1:<br>Input: 1<br>Output: “1”</p>
+<p>Example 2:<br>Input: 4<br>Output: “1211”</p>
+<p>ms:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        String result = <span class="string">"1"</span>;</span><br><span class="line">        <span class="keyword">while</span> (n &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            result = produceNew(result);</span><br><span class="line">            n--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">produceNew</span><span class="params">(String input)</span> </span>&#123;</span><br><span class="line">        String output = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">char</span> pre = input.charAt(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; input.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> cur = input.charAt(i);</span><br><span class="line">            <span class="keyword">if</span> (cur == pre) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                output = output+count+pre;</span><br><span class="line">                count = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            pre = cur;</span><br><span class="line">        &#125;</span><br><span class="line">        output = output+count+pre;</span><br><span class="line">        <span class="keyword">return</span> output;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>s: use string builder</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	    	StringBuilder curr=<span class="keyword">new</span> StringBuilder(<span class="string">"1"</span>);</span><br><span class="line">	    	StringBuilder prev;</span><br><span class="line">	    	<span class="keyword">int</span> count;</span><br><span class="line">	    	<span class="keyword">char</span> say;</span><br><span class="line">	        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">	        	prev=curr;</span><br><span class="line">	 	        curr=<span class="keyword">new</span> StringBuilder();       </span><br><span class="line">	 	        count=<span class="number">1</span>;</span><br><span class="line">	 	        say=prev.charAt(<span class="number">0</span>);</span><br><span class="line">	 	        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>,len=prev.length();j&lt;len;j++)&#123;</span><br><span class="line">	 	        	<span class="keyword">if</span> (prev.charAt(j)!=say)&#123;</span><br><span class="line">	 	        		curr.append(count).append(say);</span><br><span class="line">	 	        		count=<span class="number">1</span>;</span><br><span class="line">	 	        		say=prev.charAt(j);</span><br><span class="line">	 	        	&#125;</span><br><span class="line">	 	        	<span class="keyword">else</span> count++;</span><br><span class="line">	 	        &#125;</span><br><span class="line">	 	        curr.append(count).append(say);</span><br><span class="line">	        &#125;	       	        </span><br><span class="line">	        <span class="keyword">return</span> curr.toString();        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="937-Reorder-Log-Files"><a href="#937-Reorder-Log-Files" class="headerlink" title="937. Reorder Log Files"></a>937. Reorder Log Files</h3><p>You have an array of logs.  Each log is a space delimited string of words.</p>
+<p>For each log, the first word in each log is an alphanumeric identifier.  Then, either:</p>
+<p>Each word after the identifier will consist only of lowercase letters, or;<br>Each word after the identifier will consist only of digits.<br>We will call these two varieties of logs letter-logs and digit-logs.  It is guaranteed that each log has at least one word after its identifier.</p>
+<p>Reorder the logs so that all of the letter-logs come before any digit-log.  The letter-logs are ordered lexicographically ignoring identifier, with the identifier used in case of ties.  The digit-logs should be put in their original order.</p>
+<p>Return the final order of the logs.</p>
+<p>Example 1:</p>
+<p>Input: [“a1 9 2 3 1”,”g1 act car”,”zo4 4 7”,”ab1 off key dog”,”a8 act zoo”]<br>Output: [“g1 act car”,”a8 act zoo”,”ab1 off key dog”,”a1 9 2 3 1”,”zo4 4 7”]</p>
+<p>Note:</p>
+<p>0 &lt;= logs.length &lt;= 100<br>3 &lt;= logs[i].length &lt;= 100<br>logs[i] is guaranteed to have an identifier, and a word after the identifier.</p>
+<p>s:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> String[] reorderLogFiles(String[] logs) &#123;</span><br><span class="line">        </span><br><span class="line">        Comparator&lt;String&gt; myComp = <span class="keyword">new</span> Comparator&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">int</span> s1si = s1.indexOf(<span class="string">' '</span>);</span><br><span class="line">                <span class="keyword">int</span> s2si = s2.indexOf(<span class="string">' '</span>);</span><br><span class="line">                <span class="keyword">char</span> s1fc = s1.charAt(s1si+<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">char</span> s2fc = s2.charAt(s2si+<span class="number">1</span>);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (s1fc &lt;= <span class="string">'9'</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (s2fc &lt;= <span class="string">'9'</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (s2fc &lt;= <span class="string">'9'</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">int</span> preCompute = s1.substring(s1si+<span class="number">1</span>).compareTo(s2.substring(s2si+<span class="number">1</span>));</span><br><span class="line">                <span class="keyword">if</span> (preCompute == <span class="number">0</span>) <span class="keyword">return</span> s1.substring(<span class="number">0</span>,s1si).compareTo(s2.substring(<span class="number">0</span>,s2si));</span><br><span class="line">                <span class="keyword">return</span> preCompute;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">        Arrays.sort(logs, myComp);</span><br><span class="line">        <span class="keyword">return</span> logs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="560-Subarray-Sum-Equals-K"><a href="#560-Subarray-Sum-Equals-K" class="headerlink" title="560. Subarray Sum Equals K"></a>560. Subarray Sum Equals K</h3><p>Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.</p>
+<p>Example 1:<br>Input:nums = [1,1,1], k = 2</p>
+<p>Output: 2</p>
+<p>Note:</p>
+<p>The length of the array is in range [1, 20,000].</p>
+<p>The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].</p>
+<p>ms:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; nums.length; j++) &#123;</span><br><span class="line">                temp += nums[j];</span><br><span class="line">                <span class="keyword">if</span> (temp == k) &#123;</span><br><span class="line">                    res++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>time: <code>O(N^2)</code> space: <code>O(1)</code></p>
+<p>s:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>, result = <span class="number">0</span>;</span><br><span class="line">        Map&lt;Integer, Integer&gt; preSum = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        preSum.put(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            <span class="keyword">if</span> (preSum.containsKey(sum - k)) &#123;</span><br><span class="line">                result += preSum.get(sum - k);</span><br><span class="line">            &#125;</span><br><span class="line">            preSum.put(sum, preSum.getOrDefault(sum, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>time: <code>O(N)</code> space: <code>O(N)</code></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Cracking the Coding Interview by GAYLE LAAKMANN MCDOWELL</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/24/Trees-and-Graphs/" rel="prev" title="Trees and Graphs">
+      <i class="fa fa-chevron-left"></i> Trees and Graphs
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/24/Stacks-and-Queues/" rel="next" title="Stacks and Queues">
+      Stacks and Queues <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ColdSeaOwner</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
